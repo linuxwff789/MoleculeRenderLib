@@ -1,0 +1,32 @@
+MoleculeRenderLib - 一个独立的分子渲染库
+===========================================
+
+依赖：Android + Jetpack Compose
+
+核心功能：
+- 绘制原子的结构式（C用圆点，其他显示元素符号+隐式氢）
+- 绘制化学键（单键/双键/三键/楔形键/芳香键/凯库勒式/鲍林式）
+- 绘制文字/箭头标注
+- FUNC_GROUP官能团缩写支持（跳过组内原子，画缩写如NO₂）
+- 绘制选中高亮、拖拽预览、对齐辅助线
+- 坐标变换（缩放/平移/activeGroup变换）
+
+用法：只需 import com.moldraw.render.*
+然后调用 DrawScope 扩展函数。
+
+数据模型（自包含）：
+- MoleculeAtom / MoleculeBond / MoleculeAnnotation
+- Element / BondType / AnnotationType / BenzeneStyle / RingType / TransformGroup / DrawTool
+- 渲染常量：CARBON_DOT_R, HETERO_CIRCLE_R, BOND_LENGTH, STROKE_WIDTH 等
+
+渲染入口：
+- drawCanvasContent(...) — 画布内容绘制
+- drawBond(...) — 单键绘制
+- drawAtom(...) — 单原子绘制
+- drawAnnotationText(...) — 文字标注
+- drawAnnotationArrow(...) — 箭头标注
+- drawPaulingCircle(...) — 鲍林式苯环内切圆
+
+辅助函数：
+- calcImplicitH(atom, bonds) → H数量
+- autoSubscript(text) → CH4→CH₄
